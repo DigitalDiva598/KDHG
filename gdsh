@@ -16,20 +16,15 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# add your model's MetaData object here
-# for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-from superagi.models.base_model import DBBaseModel
-target_metadata = DBBaseModel.metadata
-from superagi.models import *
-
-# other values from the config, defined by the needs of env.py,
-# can be acquired:
-# my_important_option = config.get_main_option("my_important_option")
-# ... etc.
-
-database_url = get_config('POSTGRES_URL')
-db_username = get_config('DB_USERNAME')
-db_password = get_config('DB_PASSWORD')
-db_name = get_config('DB_NAME')
+{
+    "name": "Milvus Distributed Dev Container Definition",
+    "dockerComposeFile": ["./docker-compose-devcontainer.yml"],
+    "service": "builder",
+    "initializeCommand": "scripts/devcontainer.sh",
+    "workspaceFolder": "/go/src/github.com/milvus-io/milvus",
+    "remoteEnv": { "GOPROXY": "https://goproxy.cn" },
+    "extensions": [
+      "ms-vscode.cpptools",
+      "golang.go"
+    ]
+}
