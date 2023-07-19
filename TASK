@@ -14,7 +14,6 @@ if __name__ == "__main__":
     check_command("uvicorn", "uvicorn is not installed. Please install uvicorn to proceed.")
 
     run_npm_commands()
-
     try:
         api_process, ui_process = run_server()
         while True:
